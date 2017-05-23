@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+  <h1>Configurable apps marketplace</h1>
+  <p>
+    <a href="https://arcgis.domake.io/login/arcgis/">Login</a>
+  </p>
+  <div class="result"></div>
+  <script>
+  
+    $.ajax({
+      url:"https://arcgis.domake.io/api/products/62be019190574e8ab94aa1bcb5a9a999?format=jsonp",
+      jsonp: "callback",
+      dataType: "jsonp",
+      success:function( data ) {
+        $( ".result" ).html( JSON.stringify(data) );
+        console.log("data=",data)
+      }
+    });
+
+  </script>
+</body>
+</html>
