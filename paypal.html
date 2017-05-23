@@ -15,14 +15,10 @@
   <div class="result"></div>
   <script>
 
-    $.ajax({
-      url:"https://arcgis.domake.io/items/62be019190574e8ab94aa1bcb5a9a999/paypal-form",
-      // jsonp: "callback",
-      // dataType: "jsonp",
-      success:function( data ) {debugger;
-        $( ".result" ).html( data );
-        console.log("data=",data)
-      }
+    var paypal_endpoint = "https://arcgis.domake.io/items/62be019190574e8ab94aa1bcb5a9a999/paypal-form";
+    $.getJSON(paypal_endpoint, function( data ) {
+      $( ".result" ).html( JSON.stringify(data) );
+      console.log("data=",data)
     });
 
   </script>

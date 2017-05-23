@@ -16,7 +16,12 @@
   <script>
 
     var get_items = "https://arcgis.domake.io/api/items";
-    $.ajax({
+    $.post(get_items, function(data){
+      var me = "<hr><p><strong>Endpoint: "+get_items+"</strong></p>";
+      $( ".result" ).append("<p>"+ JSON.stringify(data) +"</p>");
+      console.log("items=",data)
+    });
+    /*$.ajax({
       url: get_items,
       type: "POST",
       jsonp: "callback",
@@ -35,45 +40,27 @@
       error: function(data){
         console.error("Error items:", data);
       }
+    });*/
+
+    var get_me = "https://arcgis.domake.io/api/me";
+    $.getJSON(get_me, function( data ) {
+      var me = "<hr><p><strong>Endpoint: "+get_me+"</strong></p>";
+      $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
+      console.log("me=",data)
     });
 
-    var get_me = "https://arcgis.domake.io/api/me?format=jsonp";
-    $.ajax({
-      url: get_me,
-      jsonp: "callback",
-      dataType: "jsonp",
-      success:function( data ) {
-        var me = "<hr><p><strong>Endpoint: "+get_me+"</strong></p>";
-        $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
-        console.log("me=",data)
-      }
+    var get_self = "https://arcgis.domake.io/api/self";
+    $.getJSON(get_self, function( data ) {
+      var me = "<hr><p><strong>Endpoint: "+get_self+"</strong></p>";
+      $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
+      console.log("self=",data)
     });
 
-    var get_self = "https://arcgis.domake.io/api/self?format=jsonp";
-    $.ajax({
-      url: get_self,
-      jsonp: "callback",
-      dataType: "jsonp",
-      success:function( data ) {
-        var me = "<hr><p><strong>Endpoint: "+get_self+"</strong></p>";
-        $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
-        console.log("self=",data)
-      }
-    });
-
-    var get_roles = "https://arcgis.domake.io/api/self/roles?format=jsonp";
-    $.ajax({
-      url: get_roles,
-      jsonp: "callback",
-      dataType: "jsonp",
-      success:function( data ) {
-        var me = "<hr><p><strong>Endpoint: "+get_roles+"</strong></p>";
-        $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
-        console.log("roles=",data)
-      },
-      error: function(data){
-        console.error("Error roles:", data);
-      }
+    var get_roles = "https://arcgis.domake.io/api/self/roles";
+    $.getJSON(get_roles, function( data ) {
+      var me = "<hr><p><strong>Endpoint: "+get_roles+"</strong></p>";
+      $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
+      console.log("roles=",data)
     });
 
   </script>

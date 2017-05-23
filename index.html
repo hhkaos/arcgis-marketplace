@@ -15,14 +15,10 @@
   <div class="result"></div>
   <script>
 
-    $.ajax({
-      url:"https://arcgis.domake.io/api/products?format=jsonp",
-      jsonp: "callback",
-      dataType: "jsonp",
-      success:function( data ) {
-        $( ".result" ).html( JSON.stringify(data) );
-        console.log("data=",data)
-      }
+    var get_products = "https://arcgis.domake.io/api/products";
+    $.getJSON(get_products, function( data ) {
+      $( ".result" ).html( JSON.stringify(data) );
+      console.log("data=",data)
     });
 
   </script>
