@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>title</title>
+  <title>Preferences</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -15,13 +15,64 @@
   <div class="result"></div>
   <script>
 
+    var get_items = "https://arcgis.domake.io/api/items";
     $.ajax({
-      url:"https://arcgis.domake.io/api/items?format=jsonp",
+      url: get_items,
+      type: "POST",
+      jsonp: "callback",
+
+    // Tell jQuery we're expecting JSONP
+    dataType: "jsonp",
+      //data: JSON.stringify(post_data),
+      //contentType: "application/json; charset=UTF-8",
+      crossDomain: true,
+      success: function(data){
+         //
+         var me = "<hr><p><strong>Endpoint: "+get_items+"</strong></p>";
+         $( ".result" ).append("<p>"+ JSON.stringify(data) +"</p>");
+         console.log("items=",data)
+      },
+      error: function(data){
+        console.error("Error items:", data);
+      }
+    });
+
+    var get_me = "https://arcgis.domake.io/api/me?format=jsonp";
+    $.ajax({
+      url: get_me,
       jsonp: "callback",
       dataType: "jsonp",
       success:function( data ) {
-        $( ".result" ).html( JSON.stringify(data) );
-        console.log("data=",data)
+        var me = "<hr><p><strong>Endpoint: "+get_me+"</strong></p>";
+        $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
+        console.log("me=",data)
+      }
+    });
+
+    var get_self = "https://arcgis.domake.io/api/self?format=jsonp";
+    $.ajax({
+      url: get_self,
+      jsonp: "callback",
+      dataType: "jsonp",
+      success:function( data ) {
+        var me = "<hr><p><strong>Endpoint: "+get_self+"</strong></p>";
+        $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
+        console.log("self=",data)
+      }
+    });
+
+    var get_roles = "https://arcgis.domake.io/api/self/roles?format=jsonp";
+    $.ajax({
+      url: get_roles,
+      jsonp: "callback",
+      dataType: "jsonp",
+      success:function( data ) {
+        var me = "<hr><p><strong>Endpoint: "+get_roles+"</strong></p>";
+        $( ".result" ).append(me + "<p>"+ JSON.stringify(data) +"</p>");
+        console.log("roles=",data)
+      },
+      error: function(data){
+        console.error("Error roles:", data);
       }
     });
 
