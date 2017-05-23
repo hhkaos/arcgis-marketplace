@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>Configurable apps marketplace</h1>
-  <h2>Landing</h2>
+  <h2>Preferencias</h2>
   <p>
     <a href="https://arcgis.domake.io/login/arcgis/">Login</a>
   </p>
@@ -16,7 +16,7 @@
   <script>
 
     $.ajax({
-      url:"https://arcgis.domake.io/api/products?format=jsonp",
+      url:"https://arcgis.domake.io/api/items?format=jsonp",
       jsonp: "callback",
       dataType: "jsonp",
       success:function( data ) {
