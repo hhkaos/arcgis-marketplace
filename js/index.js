@@ -10,7 +10,7 @@ var render_to_response = function(url, data){
   $(".result").append(endpoint + "<pre>" + JSON.stringify(data, undefined, 2) + "</pre>");
 }
 
-var request = function(url, method, data, success) {
+var request = function(url, method, data) {
   $.ajax(url, {
     method: method,
     data: data,
