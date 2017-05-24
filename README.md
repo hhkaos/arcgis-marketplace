@@ -9,6 +9,8 @@
 
 API Documentation: https://gist.github.com/mongkok/dc33fcf333458b58489333f5981d9b48
 
+Sample landing using [Calcite](http://esri.github.io/calcite-web/): [Live Demo](https://hhkaos.github.io/domake-front-test/calcite-web.html)
+
 TODOs:
 * Add ArcGIS REST endpoint to documentation (correlations)
 * Marketplace permission?
