@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Details</title>
+  <title>Marketplace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/index.js"></script>
 </head>
 <body>
   <h1>Configurable apps marketplace</h1>
-  <h2>Página de detalle</h2>
+  <h2>Marketplace</h2>
   <p>
     <a href="https://arcgis.domake.io/login/arcgis/">Login</a>
   </p>
   <div class="result"></div>
   <script>
 
-    var get_details = "https://arcgis.domake.io/api/products/62be019190574e8ab94aa1bcb5a9a999";
-    request(get_details, 'GET');
+  /* TODO: You do not have permission to perform this action */
+  var accounts = 'https://arcgis.domake.io/api/accounts?format=json';
+  request(accounts, 'GET');
 
   </script>
 </body>

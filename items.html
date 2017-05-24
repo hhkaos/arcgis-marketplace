@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Items</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/index.js"></script>
+</head>
+<body>
+  <h1>Configurable apps marketplace</h1>
+  <h2>Items</h2>
+  <p>
+    <a href="https://arcgis.domake.io/login/arcgis/">Login</a>
+  </p>
+  <div class="result"></div>
+  <script>
+
+  var itemsUrl = 'https://arcgis.domake.io/api/items?format=json';
+  request(itemsUrl, 'POST', {
+    'title': 'test',
+    'type': 'Web Map'
+  });
+
+  var itemsDetail = 'https://arcgis.domake.io/api/items/48c01123f5364f2da0d8d9ad1f6afd3a?format=json';
+  request(itemsDetail, 'GET');
+
+  /* TODO: check how it works */
+  var itemsShare = 'https://arcgis.domake.io/api/items/48c01123f5364f2da0d8d9ad1f6afd3a/share?format=json';
+  request(itemsShare, 'POST', {
+
+  });
+
+  </script>
+</body>
+</html>
