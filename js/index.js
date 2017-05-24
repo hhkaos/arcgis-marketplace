@@ -7,7 +7,7 @@ $.ajaxSetup({
 
 var render_to_response = function(url, data){
   var endpoint = "<hr><h2>Endpoint: " + url + "</h2>";
-  $(".result").append(endpoint + "<p>" + JSON.stringify(data) + "</p>");
+  $(".result").append(endpoint + "<p>" + JSON.stringify(data, undefined, 2) + "</p>");
 }
 
 var request = function(url, method, data, success) {
