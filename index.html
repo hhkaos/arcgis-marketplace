@@ -9,14 +9,25 @@
 <body>
   <h1>Configurable apps marketplace</h1>
   <h2>Landing</h2>
-  <p>
+  <p id="login">
     <a href="https://arcgis.domake.io/login/arcgis/">Login</a>
   </p>
+  <p id="logout" style="display:none">
+    <a href="#">Logout</a>
+  </p>
+
   <div class="result"></div>
   <script>
 
     var get_products = "https://arcgis.domake.io/api/products";
     request(get_products, 'GET');
+
+    is_authenticated(function(data){
+      if(data.username){
+        $("#login").hide();
+        $("#logout").show();
+      }
+    });
 
   </script>
 </body>
