@@ -75,10 +75,69 @@
       </div>
     </div>
 
-    <div class="column-24">
-      <div class="block-group block-group-4-up tablet-block-group-2-up phone-block-group-1-up" id="products">
+    <div class="column-24" id="details">
+      <div class="column-18">
+        <p>
+          <a href="../calcite-web.html">Home</a> / <a href="#">Developers</a> / <a href="#" id="author"></a> / <span id="template-name"></span>
+        </p>
+        <h1 id="title"></h1>
+        <style>
+          h1{
+            font-size: 1.5rem;
+            margin: 0;
+          }
+          h2{
+            font-size: 1.2rem;
+          }
+          #preview-canvas{
+            max-height: 400px;
+            width: 100%;
+            overflow: hidden;
+          }
+        </style>
+        <div id="preview-canvas" class="trailer-1">
+          <img src="" id="preview">
+        </div>
+        <h2>Description</h2>
+        <p id="description"></p>
+
+        <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://arcgis-confapps.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
       </div>
+      <div class="column-6">
+        <p class="leader-2">
+          <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
+          <button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>
+          <button class="btn btn-fill leader-half icon-ui-plus">Buy now</button>
+        </p>
+        <p>
+          <strong>Last update</strong>: <span id="last-update"></span><br>
+        </p>
+        <p>
+          <strong>Active installs</strong>: <span id="active-installs">12.302</span>
+        </p>
+
+      </div>
+
     </div>
 
   </div>
@@ -161,27 +220,45 @@
     }
 
     var render_to_response = function(url, data){
-  //    debugger
-      data.results.forEach(function(elem, i){
-//debugger
-        elem.description = elem.description? elem.description: "Without description";
-        var price = (elem.price/100 > 0)? "$"+ (elem.price/100): "Free";
-        var p = '' +
-        '<div class="card block trailer-1">'+
-          '<a href="product/?id='+elem.id+'"><img class="card-image" src="'+elem.image+'"></a>'+
-          '<div class="card-content">'+
-            '<h4 class="font-size-1 trailer-half"><a href="product/?id='+elem.id+'">'+elem.title+'</a></h4>'+
-            '<p class="trailer-0 font-size--1">'+elem.description+' <br> Author: '+elem.owner.username+' | Price: '+ price +'</p>'+
-          '</div>'+
-        '</div>';
-
-        $("#products").append(p);
-      });
+      //debugger
+$("#author").text(data.owner.username)
+$("#title").text(data.title)
+$("#template-name").text(data.title)
+$("#preview").attr("src",data.image)
+$("#description").text(data.description)
+$("#last-update").text(data.created)
+//       data.results.forEach(function(elem, i){
+// //debugger
+//         elem.description = elem.description? elem.description: "Without description";
+//         var price = (elem.price/100 > 0)? "$"+ (elem.price/100): "Free";
+//         var p = '' +
+//         '<div class="card block trailer-1">'+
+//           '<a href="#"><img class="card-image" src="'+elem.image+'"></a>'+
+//           '<div class="card-content">'+
+//             '<h4 class="font-size-1 trailer-half"><a href="#">'+elem.title+'</a></h4>'+
+//             '<p class="trailer-0 font-size--1">'+elem.description+' <br> Author: '+elem.owner.username+' | Price: '+ price +'</p>'+
+//           '</div>'+
+//         '</div>';
+//
+//         $("#products").append(p);
+//       });
     }
 
-    var get_products = "https://arcgis.domake.io/api/products";
-    request(get_products, 'GET');
-
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+    var qs = getUrlVars();
+    var get_details = "https://arcgis.domake.io/api/products/" + qs.id;
+    request(get_details, 'GET');
   </script>
 </body>
 </html>
