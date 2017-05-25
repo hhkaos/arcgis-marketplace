@@ -24,10 +24,16 @@
           <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
           <button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>
           <router-link :to="{ name: 'buy', params: { id: product.id }}">
-            <button class="btn btn-fill leader-half icon-ui-plus">
-            <span v-if="product.isFree">Install for free</span>
-            <span v-if="!product.isFree">Buy now (<span>{{product.price | currency}}</span>)</span>
+            <button v-if="canInstall" class="btn btn-fill leader-half icon-ui-plus">
+              <span v-if="product.isFree">Install for free</span>
+              <span v-if="!product.isFree">Buy now (<span>{{product.price | currency}}</span>)</span>
             </button>
+            <span v-if="!canInstall" class="tooltip modifier-class" aria-label="You must contact with the admin to install apps">
+              <button class="btn btn-fill btn-disabled leader-half icon-ui-error2">
+                  <span v-if="product.isFree">Install for free</span>
+                  <span v-if="!product.isFree">Buy now (<span>{{product.price | currency}}</span>)</span>
+              </button>
+            </span>
           </router-link>
         </p>
         <p>
@@ -52,12 +58,14 @@ export default {
   name: 'product',
   data () {
     return {
-      product: {}
+      product: {},
+      canInstall: false
     }
   },
   created: function () {
     var id = this.$route.params.id
-    this.loadProduct(id);
+    this.loadProduct(id)
+    this.checkAuth();
 
     // Load disqus
     (function () { // DON'T EDIT BELOW THIS LINE
@@ -79,6 +87,20 @@ export default {
 
           console.log('product loaded', this.product)
         }
+      })
+    },
+    checkAuth: function () {
+      var self = this
+      this.$http.get(app.apiURL + 'me?format=json').then(function (response) {
+        if (response.ok) {
+          var user = response.data
+
+          self.canInstall = (user.level === '2')
+
+          console.log('checkAuth', self.canInstall)
+        }
+      }, function (err) {
+        console.log(err)
       })
     }
   }

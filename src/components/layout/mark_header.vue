@@ -22,6 +22,7 @@
           <button type="submit" class="hide">Search</button>
         </form>
         -->
+
         <a v-show="!isAuth" class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/">Sign In</a>
 
         <a v-show="isAuth" href="#" class="top-nav-link dropdown-btn top-nav-username text-ellipsis">
