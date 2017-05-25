@@ -11,7 +11,8 @@ export default {
   name: 'app',
   components: {
     layout
-  }
+  },
+  apiURL: 'https://arcgis.domake.io/api/'
 }
 </script>
 

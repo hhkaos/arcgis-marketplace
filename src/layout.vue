@@ -1,11 +1,12 @@
 <template>
-  <div class="grid-container">
-    <markHeader></markHeader>
+  <div>
+    <div class="grid-container">
+      <markHeader></markHeader>
 
-    <div class="column-24">
+      
       <router-view></router-view>
     </div>
-    
+      
     <markFooter></markFooter>
   </div>
 </template>
