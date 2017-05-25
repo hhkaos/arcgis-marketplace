@@ -22,7 +22,7 @@
       <nav class="column-6">
         <h6>About Vexiza</h6>
         <ul class="list-plain">
-          <li><a href="#">About Us</a></li>
+          <li><router-link :to="{ name: 'about' }">About Us</router-link></li>
           <li><a href="#">Careers</a></li>
           <li><a href="#">Insiders Blog</a></li>
         </ul>
