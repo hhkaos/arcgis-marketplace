@@ -95,12 +95,37 @@
             overflow: hidden;
           }
         </style>
-        <div id="preview-canvas" class="trailer-1">
+        <div id="preview-canvas">
           <img src="" id="preview">
         </div>
-        <h2>Description</h2>
+        <h2 class="leader-0 trailer-0 tablet-show">
+          Description
+        </h2>
+        <h2 class="leader-1 trailer-0 tablet-hide">
+          Description
+        </h2>
         <p id="description"></p>
 
+
+
+      </div>
+      <div class="column-6">
+        <span class="leader-2 tablet-hide">&nbsp;</span>
+        <p>
+          <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
+          <button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>
+          <button class="btn btn-fill leader-half icon-ui-plus" id="buy">Buy now (<span id="price"></span>)</button>
+        </p>
+        <p>
+          <strong>Last update</strong>: <span id="last-update"></span><br>
+        </p>
+        <p>
+          <strong>Active installs</strong>: <span id="active-installs">12.302</span>
+        </p>
+
+      </div>
+    </div>
+      <div class="column-24">
         <div id="disqus_thread"></div>
 <script>
 
@@ -121,21 +146,6 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-      </div>
-      <div class="column-6">
-        <p class="leader-2">
-          <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
-          <button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>
-          <a href="#" class="btn btn-fill leader-half icon-ui-plus" id="buy">Buy now (<span id="price"></span>)</a>
-        </p>
-        <p>
-          <strong>Last update</strong>: <span id="last-update"></span><br>
-        </p>
-        <p>
-          <strong>Active installs</strong>: <span id="active-installs">12.302</span>
-        </p>
-
       </div>
 
     </div>
@@ -220,6 +230,7 @@ s.setAttribute('data-timestamp', +new Date());
     }
 
     var render_to_response = function(url, data){
+      //debugger
       $("#author").text(data.owner.username);
       $("#title").text(data.title);
       if(data.price>0){
@@ -227,11 +238,25 @@ s.setAttribute('data-timestamp', +new Date());
       }else{
         $("#buy").text("Install for free");
       }
-      $("#buy").attr("href","buy/?id="+data.id)
       $("#template-name").text(data.title);
       $("#preview").attr("src",data.image);
       $("#description").text(data.description);
       $("#last-update").text(data.created);
+// data.results.forEach(function(elem, i){
+// debugger
+//         elem.description = elem.description? elem.description: "Without description";
+//         var price = (elem.price/100 > 0)? "$"+ (elem.price/100): "Free";
+//         var p = '' +
+//         '<div class="card block trailer-1">'+
+//           '<a href="#"><img class="card-image" src="'+elem.image+'"></a>'+
+//           '<div class="card-content">'+
+//             '<h4 class="font-size-1 trailer-half"><a href="#">'+elem.title+'</a></h4>'+
+//             '<p class="trailer-0 font-size--1">'+elem.description+' <br> Author: '+elem.owner.username+' | Price: '+ price +'</p>'+
+//           '</div>'+
+//         '</div>';
+//
+//         $("#products").append(p);
+//       });
     }
 
     function getUrlVars()
