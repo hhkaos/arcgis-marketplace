@@ -15,6 +15,10 @@ Vue.use(Vue2Filters)
 Vue.use(VueFilter)
 Vue.use(Helpers)
 
+Vue.http.options.xhr = {
+  withCredentials: true
+}
+
 var routes = [
   {
     path: '/',

@@ -22,9 +22,14 @@
           <button type="submit" class="hide">Search</button>
         </form>
         -->
-        <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/">Sign In</a>
-      </nav>
+        <a v-show="!isAuth" class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/">Sign In</a>
 
+        <a v-show="isAuth" href="#" class="top-nav-link dropdown-btn top-nav-username text-ellipsis">
+          <img id="profileImgSmall" width="16" height="16" alt="" src="//cdn.arcgis.com/cdn/20557/js/arcgisonline/css/images/no-user-thumb.jpg">
+          <span id="username" :title="fullName">{{name}}</span>
+        </a>
+
+      </nav>
     </div>
 
     <!-- tablet and mobile sized navigation -->
@@ -50,8 +55,51 @@
 <script>
 export default {
   name: 'header',
+  data () {
+    return {
+      user: undefined
+    }
+  },
+  computed: {
+    isAuth: function () {
+      return (this.user !== undefined)
+    },
+    name: function () {
+      var name = ''
+      if (this.user) name = this.user.firstName
+      return name
+    },
+    fullName: function () {
+      var fullName = ''
+      if (this.user) fullName = this.user.fullName
+      return fullName
+    }
+  },
   methods: {
+    refreshAuth: function () {
+      console.log('refreshAuth')
 
+      this.user = undefined
+
+      var self = this
+      this.$http.get('https://arcgis.domake.io/api/me?format=json').then(function (response) {
+        if (response.ok) {
+          self.user = response.data
+
+          console.log('user loaded', self.user)
+        }
+      }, function (err) {
+        console.log(err)
+      })
+    }
+  },
+  created: function () {
+    this.refreshAuth()
+  },
+  watch: {
+    '$route': function (val) {
+      this.refreshAuth()
+    }
   }
 }
 </script>
