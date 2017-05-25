@@ -14,7 +14,10 @@ This samples shows how the API provided by [flavors/arcgis-marketplace](https://
 * [groups](https://hhkaos.github.io/domake-front-test/groups.html)
 
 ## Sample interface
-Sample landing using [Calcite](http://esri.github.io/calcite-web/): [Live Demo](https://hhkaos.github.io/domake-front-test/calcite-web.html)
+Sample landing using [Calcite](http://esri.github.io/calcite-web/): 
+
+* [Landing mockup](https://hhkaos.github.io/domake-front-test/calcite-web.html)
+* [Detail page mockup](https://hhkaos.github.io/domake-front-test/product/?id=35460d0cd42840c58f5754300e88ff9e)
 
 ## TODOs
 [Waffle.io: Backlog, Ready, In progress & Done](https://waffle.io/flavors/arcgis-marketplace)
