@@ -127,7 +127,7 @@ s.setAttribute('data-timestamp', +new Date());
         <p class="leader-2">
           <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
           <button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>
-          <button class="btn btn-fill leader-half icon-ui-plus">Buy now</button>
+          <button class="btn btn-fill leader-half icon-ui-plus" id="buy">Buy now (<span id="price"></span>)</button>
         </p>
         <p>
           <strong>Last update</strong>: <span id="last-update"></span><br>
@@ -223,6 +223,11 @@ s.setAttribute('data-timestamp', +new Date());
       //debugger
 $("#author").text(data.owner.username)
 $("#title").text(data.title)
+if(data.price>0){
+  $("#price").text("$"+(data.price/100));
+}else{
+  $("#buy").text("Install for free");
+}
 $("#template-name").text(data.title)
 $("#preview").attr("src",data.image)
 $("#description").text(data.description)
