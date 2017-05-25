@@ -221,19 +221,19 @@ s.setAttribute('data-timestamp', +new Date());
 
     var render_to_response = function(url, data){
       //debugger
-$("#author").text(data.owner.username)
-$("#title").text(data.title)
-if(data.price>0){
-  $("#price").text("$"+(data.price/100));
-}else{
-  $("#buy").text("Install for free");
-}
-$("#template-name").text(data.title)
-$("#preview").attr("src",data.image)
-$("#description").text(data.description)
-$("#last-update").text(data.created)
-//       data.results.forEach(function(elem, i){
-// //debugger
+      $("#author").text(data.owner.username);
+      $("#title").text(data.title);
+      if(data.price>0){
+        $("#price").text("$"+(data.price/100));
+      }else{
+        $("#buy").text("Install for free");
+      }
+      $("#template-name").text(data.title);
+      $("#preview").attr("src",data.image);
+      $("#description").text(data.description);
+      $("#last-update").text(data.created);
+// data.results.forEach(function(elem, i){
+// debugger
 //         elem.description = elem.description? elem.description: "Without description";
 //         var price = (elem.price/100 > 0)? "$"+ (elem.price/100): "Free";
 //         var p = '' +
