@@ -28,6 +28,11 @@ var routes = [
         name: 'product',
         path: 'product/:id',
         component: resolve => require(['./components/product.vue'], resolve)
+      },
+      {
+        name: 'buy',
+        path: 'buy/:id',
+        component: resolve => require(['./components/buy.vue'], resolve)
       }
     ]
   }

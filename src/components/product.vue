@@ -23,7 +23,12 @@
         <p>
           <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
           <button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>
-          <button class="btn btn-fill leader-half icon-ui-plus"><span v-if="product.isFree">Install for free</span><span v-if="!product.isFree">Buy now (<span>{{product.price | currency}}</span>)</span></button>
+          <router-link :to="{ name: 'buy', params: { id: product.id }}">
+            <button class="btn btn-fill leader-half icon-ui-plus">
+            <span v-if="product.isFree">Install for free</span>
+            <span v-if="!product.isFree">Buy now (<span>{{product.price | currency}}</span>)</span>
+            </button>
+          </router-link>
         </p>
         <p>
           <strong>Last update</strong>: <span>{{product.modified | date('%Y-%m-%d')}}</span><br>
