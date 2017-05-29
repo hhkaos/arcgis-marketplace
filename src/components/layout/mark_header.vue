@@ -21,7 +21,8 @@
               <input type="search" placeholder="Search" name="q" style="margin-top: -1px;">
               <button type="submit" class="hide">Search</button>
             </form> -->
-            <a v-show="!isAuth" class="top-nav-link icon-ui-user margin-left-1" href="#">Sign In</a>
+
+            <a v-show="!isAuth" class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis">Sign In</a>
             <div v-show="isAuth" class="dropdown js-dropdown right">
               <a class="top-nav-link icon-ui-user margin-left-1 js-dropdown-toggle" tabindex="0" aria-haspopup="true" aria-expanded="false" href="#">{{name}}</a>
               <nav class="dropdown-menu dropdown-right" role="menu">
