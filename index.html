@@ -52,7 +52,8 @@
             <button type="submit" class="hide">Search</button>
           </form>
           -->
-          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/">Sign In</a>
+          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/" id="login">Sign In</a>
+          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/logout" id="logout" style="display:none">Logout</a>
         </nav>
 
       </div>
@@ -137,6 +138,8 @@
     </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/js.cookie.js"></script>
+  <script src="js/index.js"></script>
   <script>
 
     $.ajaxSetup({
@@ -161,9 +164,7 @@
     }
 
     var render_to_response = function(url, data){
-  //    debugger
       data.results.forEach(function(elem, i){
-//debugger
         elem.description = elem.description? elem.description: "Without description";
         var price = (elem.price/100 > 0)? "$"+ (elem.price/100): "Free";
         var p = '' +
