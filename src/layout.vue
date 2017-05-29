@@ -1,9 +1,8 @@
 <template>
   <div>
+    <markHeader></markHeader>
+    
     <div class="grid-container">
-      <markHeader></markHeader>
-
-      
       <router-view></router-view>
     </div>
       
