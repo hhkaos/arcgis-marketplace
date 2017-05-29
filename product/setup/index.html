@@ -52,7 +52,8 @@
             <button type="submit" class="hide">Search</button>
           </form>
           -->
-          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/">Sign In</a>
+          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/" id="login">Sign In</a>
+          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/logout" id="logout" style="display:none">Logout</a>
         </nav>
 
       </div>
@@ -74,29 +75,30 @@
         </nav>
       </div>
     </div>
+    <div class="alert alert-green is-active column-16 pre-4 post-4 trailer-1" style="max-width:100%">
+      <h2 style="font-size:1.5rem" class="trailer-0 text-center">Your payment has been received successfully</h2>
+    </div>
+    <div class="column-16 pre-4 post-4 panel panel-white">
+      <div id="step-1">
 
-    <div class="column-16 pre-4 post-4">
-
-      <div>
-        <h2>Your payment has been received successfully</h2>
+        <h1>We are almost done</h1>
+        <ol>
+          <li>The application has been registered to be used by your organization.</li>
+          <li>
+            We are going to create a group called "Custom Configurable Apps" and
+            we will add all members from your organization to it so they can user
+            this template and future ones.
+          </li>
+        </ol>
+        <form>
+          <button type="submit" class="btn btn-small btn-fill leader-0 trailer -1 ">OK, LET'S FINISH</button>
+        </form>
       </div>
-      <h1>We are almost done</h1>
-      <ol>
-        <li>The application has been registered to be used by your organization.</li>
-        <li>
-          We are going to create a group called "Custom Configurable Apps" and
-          we will add all members from your organization to it so they can user
-          this template and future ones.
-        </li>
-      </ol>
-      <form>
-        <button type="submit">Ok, finish</button>
-      </form>
-      <div>
+      <div id="step-2" style="display:none">
         <h2>Congratulations, you are ready to go</h2>
-        <p>Learn more about a href="">how to use this template</a></p>
+        <p>Learn more about <a href="#">how to use this template</a></p>
         <p>
-          <a href="#">Try this template</a>
+          <a href="#"  class="btn btn-small btn-fill leader-0 trailer -1">TRY IT NOW</a>
         </p>
       </div>
 
@@ -159,63 +161,18 @@
     </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../../js/js.cookie.js"></script>
+  <script src="../../js/index.js"></script>
   <script>
 
-    var qs = getUrlVars();
-    var paypal_endpoint = "https://arcgis.domake.io/items/" + qs.id + "/paypal-form";
+  $("#step-1 form").submit(function(e){
 
-    $.get(paypal_endpoint, function( data ) {
-       $("#paypal").html( data );
+    e.preventDefault();
+    $("#step-1").slideUp(function(){
+      $("#step-2").slideDown();
     });
-
-    $.ajaxSetup({
-      crossDomain: true,
-      xhrFields: {
-        withCredentials: true
-      }
-    });
-
-    var request = function(url, method, data, success) {
-      $.ajax(url, {
-        method: method,
-        data: data,
-        dataType: 'json',
-        success: function(data){
-          render_to_response(url, data)
-        },
-        error: function(data) {
-          render_to_response(url, data);
-        }
-      });
-    }
-
-    var render_to_response = function(url, data){
-      $("#author").text(data.owner.username);
-      $("#title").text(data.title);
-      if(data.price>0){
-        $(".price").text("$"+(data.price/100));
-      }else{
-        $("#buy").text("Install for free");
-      }
-
-      $("#preview").attr("src",data.image);
-
-    }
-    var get_details = "https://arcgis.domake.io/api/products/" + qs.id;
-    request(get_details, 'GET');
-
-    function getUrlVars()
-    {
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for(var i = 0; i < hashes.length; i++)
-        {
-            hash = hashes[i].split('=');
-            vars.push(hash[0]);
-            vars[hash[0]] = hash[1];
-        }
-        return vars;
-    }
+    return false;
+  })
 
 
   </script>
