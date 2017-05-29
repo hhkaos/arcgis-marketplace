@@ -23,18 +23,26 @@
         <p>
           <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
           <button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>
-          <router-link :to="{ name: 'buy', params: { id: product.id }}">
-            <button v-if="canInstall" class="btn btn-fill leader-half icon-ui-plus">
+          <router-link v-if="canInstall" :to="{ name: 'buy', params: { id: product.id }}">
+            <button class="btn btn-fill leader-half icon-ui-plus">
               <span v-if="product.isFree">Install for free</span>
               <span v-if="!product.isFree">Buy now (<span>{{product.price | currency}}</span>)</span>
             </button>
-            <span v-if="!canInstall" class="tooltip modifier-class" aria-label="You must contact with the admin to install apps">
+          </router-link>
+          <a v-if="!isLoggedIn" href="https://arcgis.domake.io/login/arcgis">
+            <span class="tooltip modifier-class" aria-label="You must Sign In to install apps">
               <button class="btn btn-fill btn-disabled leader-half icon-ui-error2">
                   <span v-if="product.isFree">Install for free</span>
                   <span v-if="!product.isFree">Buy now (<span>{{product.price | currency}}</span>)</span>
               </button>
             </span>
-          </router-link>
+          </a>
+          <span v-if="isLoggedIn && !canInstall" class="tooltip modifier-class" aria-label="You must contact with the admin to install apps">
+            <button class="btn btn-fill btn-disabled leader-half icon-ui-error2">
+                <span v-if="product.isFree">Install for free</span>
+                <span v-if="!product.isFree">Buy now (<span>{{product.price | currency}}</span>)</span>
+            </button>
+          </span>
         </p>
         <p>
           <strong>Last update</strong>: <span>{{product.modified | date('%Y-%m-%d')}}</span><br>
@@ -59,6 +67,7 @@ export default {
   data () {
     return {
       product: {},
+      isLoggedIn: false,
       canInstall: false
     }
   },
@@ -95,11 +104,14 @@ export default {
         if (response.ok) {
           var user = response.data
 
+          self.isLoggedIn = true
           self.canInstall = (user.level === '2')
 
           console.log('checkAuth', self.canInstall)
         }
       }, function (err) {
+        self.isLoggedIn = false
+
         console.log(err)
       })
     }
