@@ -52,7 +52,8 @@
             <button type="submit" class="hide">Search</button>
           </form>
           -->
-          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/">Sign In</a>
+          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/" id="login">Sign In</a>
+          <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/logout" id="logout" style="display:none">Logout</a>
         </nav>
 
       </div>
@@ -78,7 +79,7 @@
     <div class="column-24" id="details">
       <div class="column-18">
         <p>
-          <a href="../calcite-web.html">Home</a> / <a href="#">Developers</a> / <a href="#" id="author"></a> / <span id="template-name"></span>
+          <a href="../">Home</a> / <!--<a href="#">Developers</a> / <a href="#" id="author"></a> /--> <span id="template-name"></span>
         </p>
         <h1 id="title"></h1>
         <style>
@@ -114,7 +115,7 @@
         <p>
           <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
           <button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>
-          <button class="btn btn-fill leader-half icon-ui-plus" id="buy">Buy now (<span id="price"></span>)</button>
+          <a href="#" class="btn btn-fill leader-half icon-ui-plus" id="buy">Buy now (<span id="price"></span>)</a>
         </p>
         <p>
           <strong>Last update</strong>: <span id="last-update"></span><br>
@@ -206,6 +207,8 @@ s.setAttribute('data-timestamp', +new Date());
     </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../js/js.cookie.js"></script>
+  <script src="../js/index.js"></script>
   <script>
 
     $.ajaxSetup({
@@ -235,6 +238,7 @@ s.setAttribute('data-timestamp', +new Date());
       $("#title").text(data.title);
       if(data.price>0){
         $("#price").text("$"+(data.price/100));
+        $("#buy").attr("href", "buy/?id="+data.id)
       }else{
         $("#buy").text("Install for free");
       }
