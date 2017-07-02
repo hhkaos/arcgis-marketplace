@@ -241,6 +241,7 @@ s.setAttribute('data-timestamp', +new Date());
         $("#buy").attr("href", "buy/?id="+data.id)
       }else{
         $("#buy").text("Install for free");
+        $("#buy").attr("href", "setup/?id="+data.id)
       }
       $("#template-name").text(data.title);
       $("#preview").attr("src",data.image);
