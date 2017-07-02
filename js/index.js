@@ -28,6 +28,7 @@ var is_authenticated = function(callback){
 
 var logged = Cookies.get('login');
 if(!logged){
+  // TODO: avoid check login at every load
   is_authenticated(function(data){
 
     if(data.responseJSON.username){

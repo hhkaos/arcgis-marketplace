@@ -247,22 +247,9 @@ s.setAttribute('data-timestamp', +new Date());
       $("#preview").attr("src",data.image);
       $("#description").text(data.description);
       $("#last-update").text(data.created);
-// data.results.forEach(function(elem, i){
-// debugger
-//         elem.description = elem.description? elem.description: "Without description";
-//         var price = (elem.price/100 > 0)? "$"+ (elem.price/100): "Free";
-//         var p = '' +
-//         '<div class="card block trailer-1">'+
-//           '<a href="#"><img class="card-image" src="'+elem.image+'"></a>'+
-//           '<div class="card-content">'+
-//             '<h4 class="font-size-1 trailer-half"><a href="#">'+elem.title+'</a></h4>'+
-//             '<p class="trailer-0 font-size--1">'+elem.description+' <br> Author: '+elem.owner.username+' | Price: '+ price +'</p>'+
-//           '</div>'+
-//         '</div>';
-//
-//         $("#products").append(p);
-//       });
     }
+
+    //TODO: If user is not logged can not install/buy
 
     function getUrlVars()
     {
