@@ -33,7 +33,7 @@
       <!-- desktop sized navigation -->
       <div class="tablet-hide">
         <!-- logo / home -->
-        <a href="#" class="top-nav-title">
+        <a href="../../" class="top-nav-title">
           ArcGIS Configurable Web Apps <br>
           <small style="font-style: italic;">Extend your organization with new templates, storymaps and much more.</small>
         </a>
@@ -84,19 +84,24 @@
         <p>
           Amount: 1 x <span class="price"></span> = <strong class="price"></strong>
         </p>
-        <h1>Payment methods</h1>
+        <h1>Choose your preferred payment method</h1>
         <p>
          <label>
-           <input type="radio" name="color" value="paypal" checked> Pay using Paypal
+           <input type="radio" name="payment-method" value="paypal"> Pay using Paypal
          </label>
        </p>
-        <div id="paypal"></div>
+        <div id="paypal" style="display:none">
+            <button>Confirm</button>
+        </div>
 
         <p class="leader-1">
           <label>
-            <input type="radio" name="color" value="paypal"> Pay using bank transfer
+            <input type="radio" name="payment-method" value="bank-transfer"> Pay using bank transfer
           </label>
         </p>
+        <div id="bank-transfer" style="display:none">
+            Please contact us to: info@vexiza.com
+        </div>
       </div>
       <div class="column-6">
         <h1 id="title"></h1>
@@ -187,11 +192,6 @@
   <script>
 
     var qs = getUrlVars();
-    var paypal_endpoint = "https://arcgis.domake.io/items/" + qs.id + "/paypal-form";
-
-    $.get(paypal_endpoint, function( data ) {
-       $("#paypal").html( data );
-    });
 
     $.ajaxSetup({
       crossDomain: true,
@@ -241,6 +241,59 @@
         }
         return vars;
     }
+
+
+    $('[name="payment-method"]').change(function(e){
+      var method = $(this).val();
+      if(method === 'paypal'){
+        $('#paypal').slideDown();
+        $('#bank-transfer').slideUp();
+      }
+      if(method === 'bank-transfer'){
+        $('#bank-transfer').slideDown();
+        $('#paypal').slideUp();
+      }
+    });
+
+    $("#paypal button").click(function(){
+      console.log("Log!");
+      var data = {
+        "items": [
+            {"id": "54176930b90e480284f7884b83ebce71", "quantity": 1}
+        ]
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "https://arcgis.domake.io/api/orders",
+        data: {"id": "54176930b90e480284f7884b83ebce71", "quantity": 1},
+        success: function(data){
+          var paypal_endpoint = "https://arcgis.domake.io/orders/" + data.id + "/paypal-form";
+
+          $.get(paypal_endpoint, function( data ) {
+             $("#paypal").html( data );
+          });
+        },
+        dataType: 'json'
+      });
+    });
+    /*
+
+    POST - pago
+    https://arcgis.domake.io/api/orders
+
+    application/json
+
+    {
+        "items": [
+            {"id": "54176930b90e480284f7884b83ebce71", "quantity": 1}
+        ]
+    }
+
+    producto/id-producto/
+
+    */
+
 
 
   </script>
