@@ -256,17 +256,17 @@
     });
 
     $("#paypal button").click(function(){
-      console.log("Log!");
+      //console.log("Log!");
       var data = {
         "items": [
-            {"id": "54176930b90e480284f7884b83ebce71", "quantity": 1}
+            {"id": qs.id, "quantity": 1}
         ]
       };
 
       $.ajax({
         type: "POST",
         url: "https://arcgis.domake.io/api/orders",
-        data: {"id": "54176930b90e480284f7884b83ebce71", "quantity": 1},
+        data: {"id": qs.id, "quantity": 1},
         success: function(data){
           var paypal_endpoint = "https://arcgis.domake.io/orders/" + data.id + "/paypal-form";
 
