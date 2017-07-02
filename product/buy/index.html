@@ -195,8 +195,6 @@
 
     $.ajaxSetup({
       crossDomain: true,
-      contentType: "application/json; charset=utf-8",
-
       xhrFields: {
         withCredentials: true
       }
@@ -268,7 +266,8 @@
       $.ajax({
         type: "POST",
         url: "https://arcgis.domake.io/api/orders",
-        data: data,
+        contentType:"application/json; charset=utf-8",
+        data: JSON.stringify(data),
         success: function(data){
           var paypal_endpoint = "https://arcgis.domake.io/orders/" + data.id + "/paypal-form";
 
