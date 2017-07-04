@@ -194,7 +194,8 @@
     e.preventDefault();
 
     $.ajax({
-        type: "POST",        
+        type: "POST",    
+        dataType: 'json',
         url: "https://arcgis.domake.io/api/products/"+qs.id+"/activate",
         success: function(data){
           $("#step-1").slideUp(function(){
