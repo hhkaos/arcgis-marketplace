@@ -13,11 +13,22 @@ This samples shows how the API provided by [flavors/arcgis-marketplace](https://
 * [items](https://hhkaos.github.io/domake-front-test/items.html)
 * [groups](https://hhkaos.github.io/domake-front-test/groups.html)
 
-## Sample interface
-Sample landing using [Calcite](http://esri.github.io/calcite-web/):
+# How to install
 
-* [Landing mockup](https://hhkaos.github.io/domake-front-test)
-* [Detail page mockup](https://hhkaos.github.io/domake-front-test/product/?id=35460d0cd42840c58f5754300e88ff9e)
+1. Download or fork and clone this repo
+2. Run `npm install` to install the dependencies
+
+**For development**
+
+Run `npm run dev` to start a development server
+
+**For deployment**
+
+Run `npm run build` to start a development server
+
+# About Acetate
+
+This static page has been generated using [Acetate](http://acetate.io/).
 
 ## TODOs
 [Waffle.io: Backlog, Ready, In progress & Done](https://waffle.io/flavors/arcgis-marketplace)
