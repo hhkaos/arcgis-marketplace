@@ -1,5 +1,5 @@
 ---
-title: Hello World 2
+title: Product Details
 description: Congratulations you have successfuly setup Acetate!!
 ---
 
@@ -23,6 +23,7 @@ description: Congratulations you have successfuly setup Acetate!!
         max-height: 400px;
         width: 100%;
         overflow: hidden;
+        background-color: black;
       }
     </style>
     <div id="preview-canvas">
@@ -42,7 +43,7 @@ description: Congratulations you have successfuly setup Acetate!!
   <div class="column-6">
     <span class="leader-2 tablet-hide">&nbsp;</span>
     <p>
-      <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
+      <a href="#" class="btn btn-fill btn-clear leader-half icon-ui-maps" id="preview-url" target="blank">Preview in new window</a>
       <!--<button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>-->
       <a href="#" class="btn btn-fill leader-half icon-ui-plus" id="buy">Buy now (<span id="price"></span>)</a>
     </p>
@@ -117,8 +118,19 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
         $("#buy").attr("href", "setup/?id="+data.id)
       }
       $("#template-name").text(data.name);
-      $("#preview").attr("src",data.image);
+      
+      if(data.youtube_url){
+        $("#preview-canvas").html(''+
+          '<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="'+
+          data.youtube_url + '" width="640" height="360" frameborder="0" '+
+          'style="position:absolute;margin-left:-320px;left:50%" allowfullscreen></iframe></div>');
+      }else{
+        $("#preview").attr("src",data.image);
+      }
+      
       $("#description").text(data.description);
+      $("#preview-url").attr("href", data.preview+'?'+$.param(data.url_query));
+
       var lastUpdate = moment(data.created).format("MMMM Do YYYY");
 
       $("#last-update").text(lastUpdate);

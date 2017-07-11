@@ -27,6 +27,8 @@ var is_authenticated = function(callback){
 };
 
 var logged = Cookies.get('login');
+window.$APP = window.$APP || {};
+
 
 if(!logged){
   // TODO: avoid check login at every load
@@ -35,6 +37,9 @@ if(!logged){
 
     if(data.responseJSON.username){
       Cookies.set('login', 'true');
+      
+      localStorage.me = JSON.stringify(data.responseJSON);
+      window.$APP.me = JSON.parse(localStorage.me);
       $(document).ready(function(){
         $("#login").hide();
         $("#logout").show();
@@ -42,6 +47,8 @@ if(!logged){
     }
   });
 }else{
+  window.$APP.me = JSON.parse(localStorage.me);
+  
   $(document).ready(function(){
     $("#login").hide();
     $("#logout").show();

@@ -1,5 +1,5 @@
 ---
-title: Hello World 2
+title: Product Setup
 description: Congratulations you have successfuly setup Acetate!!
 ---
  <!-- TODO: if free template hide this message -->
@@ -27,7 +27,7 @@ description: Congratulations you have successfuly setup Acetate!!
         <h2>Congratulations, you are ready to go</h2>
         <p>Learn more about <a href="#">how to use this template</a></p>
         <p>
-          <a href="#"  class="btn btn-small btn-fill leader-0 trailer -1">TRY IT NOW</a>
+          <a href="#"  class="btn btn-small btn-fill leader-0 trailer -1" id="try">TRY IT NOW</a>
         </p>
       </div>
 
@@ -59,6 +59,11 @@ description: Congratulations you have successfuly setup Acetate!!
       }
       return vars;
   }
+
+  // TODO: verify that fieldname is always 'username' <- not sure if only for dev accounts
+  var url = 'http://' + window.$APP.me.username + '.maps.arcgis.com/home/content.html?start=1&view=table&sortOrder=desc&sortField=modified';
+  
+  $("#try").attr('href', url);
 
   $("#step-1 form").submit(function(e){
 
