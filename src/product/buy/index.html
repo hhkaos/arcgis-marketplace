@@ -1,0 +1,173 @@
+---
+title: Hello World 2
+description: Congratulations you have successfuly setup Acetate!!
+---
+
+<div class="column-16 pre-4 post-4">
+
+
+      <div class="column-10">
+        <h1>Price</h1>
+        <p>
+          Amount: 1 x <span class="price"></span> = <strong class="price"></strong>
+        </p>
+        <h1>Choose your preferred payment method</h1>
+        <p>
+         <label>
+           <input type="radio" name="payment-method" value="paypal"> Pay using Paypal
+         </label>
+       </p>
+        <div id="paypal" style="display:none">
+            <div class="text-center">
+            <button class="btn btn-default btn-small">Confirm</button>
+            </div>
+        </div>
+
+        <p class="leader-1">
+          <label>
+            <input type="radio" name="payment-method" value="bank-transfer"> Pay using bank transfer
+          </label>
+        </p>
+        <div id="bank-transfer" style="display:none">
+            Please contact us to: info@vexiza.com
+        </div>
+      </div>
+      <div class="column-6">
+        <h1 id="title"></h1>
+        <style>
+          h1{
+            font-size: 1.5rem;
+            margin: 0;
+          }
+          h2{
+            font-size: 1.2rem;
+          }
+          #paypal input[type="image"]{
+            width: 230px;
+            margin: 0 auto;
+            height: auto;
+
+          }
+        </style>
+        <div id="preview-canvas" class="trailer-half">
+          <img src="" id="preview">
+        </div>
+        <p>
+          Author: <span id="author"></span>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+   <script>
+
+    var qs = getUrlVars();
+
+    $.ajaxSetup({
+      crossDomain: true,
+      xhrFields: {
+        withCredentials: true
+      }
+    });
+
+    var request = function(url, method, data, success) {
+      $.ajax(url, {
+        method: method,
+        data: data,
+        dataType: 'json',
+        success: function(data){
+          render_to_response(url, data)
+        },
+        error: function(data) {
+          render_to_response(url, data);
+        }
+      });
+    }
+
+    var render_to_response = function(url, data){
+      $("#author").text(data.owner.username);
+      $("#title").text(data.title);
+      if(data.price>0){
+        $(".price").text("$"+(data.price/100));
+      }else{
+        $("#buy").text("Install for free");
+      }
+
+      $("#preview").attr("src",data.image);
+
+    }
+    var get_details = "https://arcgis.domake.io/api/products/" + qs.id;
+    request(get_details, 'GET');
+
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
+
+    $('[name="payment-method"]').change(function(e){
+      var method = $(this).val();
+      if(method === 'paypal'){
+        $('#paypal').slideDown();
+        $('#bank-transfer').slideUp();
+      }
+      if(method === 'bank-transfer'){
+        $('#bank-transfer').slideDown();
+        $('#paypal').slideUp();
+      }
+    });
+
+    $("#paypal button").click(function(){
+      //console.log("Log!");
+      var data = {
+        "items": [
+            {"id": qs.id, "quantity": 1}
+        ]
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "https://arcgis.domake.io/api/orders",
+        contentType:"application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        success: function(data){
+          var paypal_endpoint = "https://arcgis.domake.io/orders/" + data.id + "/paypal-form";
+
+          $.get(paypal_endpoint, function( data ) {
+             $("#paypal").html( data );
+          });
+        },
+        dataType: 'json'
+      });
+    });
+    /*
+
+    POST - pago
+    https://arcgis.domake.io/api/orders
+
+    application/json
+
+    {
+        "items": [
+            {"id": "54176930b90e480284f7884b83ebce71", "quantity": 1}
+        ]
+    }
+
+    producto/id-producto/
+
+    */
+
+
+
+  </script>

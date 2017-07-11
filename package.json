@@ -1,23 +1,35 @@
 {
-  "name": "configurable-apps",
+  "name": "domake-front-test",
+  "description": "Test frontend for ArcGIS Configurable Apps marketplace.",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "author": "Raul Jimenez <hhkaos@gmail.com> (https://rauljimenez.info/)",
+  "bugs": {
+    "url": "https://github.com/mongkok/domake-front-test/issues/"
+  },
   "dependencies": {
+    "acetate": "1.1.1",
+    "acetate-cli": "1.0.1",
     "moment": "^2.18.1"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "keywords": [
+    "acetate",
+    "arcgis",
+    "configurable",
+    "application"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
   },
+  "homepage": "https://github.com/mongkok/domake-front-test/",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hhkaos/domake-front-test.git"
+    "url": "git@github.com:mongkok/domake-front-test.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hhkaos/domake-front-test/issues"
-  },
-  "homepage": "https://github.com/hhkaos/domake-front-test#readme"
+  "scripts": {
+    "start": "acetate serve",
+    "dev": "node ./node_modules/acetate-cli/bin/acetate.js server dev --open --config acetate.config.js",
+    "build": "node ./node_modules/acetate-cli/bin/acetate.js build --config acetate.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

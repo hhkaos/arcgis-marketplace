@@ -1,0 +1,146 @@
+---
+title: Hello World 2
+description: Congratulations you have successfuly setup Acetate!!
+---
+
+<script src="/assets/js/moment.js"></script>
+
+<div class="column-24" id="details">
+  <div class="column-18">
+    <p>
+      <a href="../">Home</a> / <!--<a href="#">Developers</a> / <a href="#" id="author"></a> /--> <span id="template-name"></span>
+    </p>
+
+    <style>
+      h1{
+        font-size: 1.5rem;
+        margin: 0;
+      }
+      h2{
+        font-size: 1.2rem;
+      }
+      #preview-canvas{
+        max-height: 400px;
+        width: 100%;
+        overflow: hidden;
+      }
+    </style>
+    <div id="preview-canvas">
+      <img src="" id="preview">
+    </div>
+    <h2 class="leader-0 trailer-0 tablet-show">
+      Description
+    </h2>
+    <h2 class="leader-1 trailer-0 tablet-hide">
+      Description
+    </h2>
+    <p id="description"></p>
+
+
+
+  </div>
+  <div class="column-6">
+    <span class="leader-2 tablet-hide">&nbsp;</span>
+    <p>
+      <button class="btn btn-fill btn-clear leader-half icon-ui-maps">Preview</button>
+      <!--<button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>-->
+      <a href="#" class="btn btn-fill leader-half icon-ui-plus" id="buy">Buy now (<span id="price"></span>)</a>
+    </p>
+    <p>
+      <strong>Last update</strong>: <span id="last-update"></span><br>
+    </p>
+        <!--<p>
+          <strong>Active installs</strong>: <span id="active-installs">12.302</span>
+        </p>-->
+
+      </div>
+    </div>
+    <div class="column-24">
+      <div id="disqus_thread"></div>
+      <script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://arcgis-confapps.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+  $.ajaxSetup({
+    crossDomain: true,
+    xhrFields: {
+      withCredentials: true
+    }
+  });
+
+  var request = function(url, method, data, success) {
+    $.ajax(url, {
+      method: method,
+      data: data,
+      dataType: 'json',
+      success: function(data){
+        render_to_response(url, data)
+      },
+      error: function(data) {
+        render_to_response(url, data);
+      }
+    });
+  }
+
+  var render_to_response = function(url, data){
+      //debugger
+      $("#author").text(data.owner.username);
+      
+      if(data.price>0){
+        $("#price").text("$"+(data.price/100));
+        $("#buy").attr("href", "buy/?id="+data.id)
+      }else{
+        $("#buy").text("Install for free");
+        $("#buy").attr("href", "setup/?id="+data.id)
+      }
+      $("#template-name").text(data.name);
+      $("#preview").attr("src",data.image);
+      $("#description").text(data.description);
+      var lastUpdate = moment(data.created).format("MMMM Do YYYY");
+
+      $("#last-update").text(lastUpdate);
+    }
+
+    //TODO: If user is not logged can not install/buy
+
+    function getUrlVars()
+    {
+      var vars = [], hash;
+      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+      for(var i = 0; i < hashes.length; i++)
+      {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+      }
+      return vars;
+    }
+    var qs = getUrlVars();
+    var get_details = "https://arcgis.domake.io/api/products/" + qs.id;
+    request(get_details, 'GET');
+  </script>
+</body>
+</html>
