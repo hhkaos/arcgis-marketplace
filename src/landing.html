@@ -5,51 +5,6 @@ layout: layouts/_layout:main
 url: '/'
 ---
 
-<div class="block-group block-group-4-up tablet-block-group-2-up phone-block-group-1-up" id="products">
+<div class="block-group block-group-4-up tablet-block-group-2-up phone-block-group-1-up" id="products"></div>
 
-</div>
-
-  <script>
-
-    $.ajaxSetup({
-      crossDomain: true,
-      xhrFields: {
-        withCredentials: true
-      }
-    });
-
-    var request = function(url, method, data, success) {
-      $.ajax(url, {
-        method: method,
-        data: data,
-        dataType: 'json',
-        success: function(data){
-          render_to_response(url, data)
-        },
-        error: function(data) {
-          render_to_response(url, data);
-        }
-      });
-    }
-
-    var render_to_response = function(url, data){
-      data.results.forEach(function(elem, i){
-        elem.description = elem.description? elem.description: "Without description";
-        var price = (elem.price/100 > 0)? "$"+ (elem.price/100): "Free";
-        var p = '' +
-        '<div class="card block trailer-1">'+
-          '<a href="product/?id='+elem.id+'"><img class="card-image" src="'+elem.image+'"></a>'+
-          '<div class="card-content">'+
-            '<h4 class="font-size-1 trailer-half"><a href="product/?id='+elem.id+'">'+elem.name+'</a></h4>'+
-            '<p class="trailer-0 font-size--1">'+elem.description+' <br> Author: '+elem.owner.username+' | Price: '+ price +'</p>'+
-          '</div>'+
-        '</div>';
-
-        $("#products").append(p);
-      });
-    }
-
-    var get_products = "https://arcgis.domake.io/api/products";
-    request(get_products, 'GET');
-
-  </script>
+<script src="/assets/js/landing.js"></script>

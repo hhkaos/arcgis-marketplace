@@ -4,87 +4,38 @@ description: Congratulations you have successfuly setup Acetate!!
 layout: layouts/_layout:main
 url: '/product/setup/'
 ---
- <!-- TODO: if free template hide this message -->
-  <div class="column-24"></div>
-    <div class="alert alert-green is-active column-16 pre-4 post-4 trailer-1" style="max-width:63.33333vw">
-      <h2 style="font-size:1.5rem" class="trailer-0 text-center">Your payment has been received successfully</h2>
-    </div>
-    <div class="column-16 pre-4 post-4 panel panel-white">
-      <div id="step-1">
+<!-- TODO: if free template hide this message -->
+<div class="column-24"></div>
+<div class="alert alert-green is-active column-16 pre-4 post-4 trailer-1" style="max-width:63.33333vw">
+  <h2 style="font-size:1.5rem" class="trailer-0 text-center">Your payment has been received successfully</h2>
+</div>
+<div class="column-16 pre-4 post-4 panel panel-white">
+  <div id="step-1">
 
-        <h1>We are almost done</h1>
-        <ol>
-          <li>Now we are going to register the application to be used by your organization.</li>
-          <li>
-            We are going to create a group called "Custom Configurable Apps" and
-            we will add all members from your organization to it so they can user
-            this template and future ones.
-          </li>
-        </ol>
-        <form>
-          <button type="submit" class="btn btn-small btn-fill leader-0 trailer -1 ">OK, LET'S FINISH</button>
-        </form>
-      </div>
-      <div id="step-2" style="display:none">
-        <h2>Congratulations, you are ready to go</h2>
-        <p>Learn more about <a href="#">how to use this template</a></p>
-        <p>
-          <a href="#"  class="btn btn-small btn-fill leader-0 trailer -1" id="try">TRY IT NOW</a>
-        </p>
-      </div>
-
-
-    </div>
-
+    <h1>We are almost done</h1>
+    <ol>
+      <li>Now we are going to register the application to be used by your organization.</li>
+      <li>
+        We are going to create a group called "Custom Configurable Apps" and
+        we will add all members from your organization to it so they can user
+        this template and future ones.
+      </li>
+    </ol>
+    <form>
+      <button type="submit" class="btn btn-small btn-fill leader-0 trailer -1 ">OK, LET'S FINISH</button>
+    </form>
+  </div>
+  <div id="step-2" style="display:none">
+    <h2>Congratulations, you are ready to go</h2>
+    <p>Learn more about <a href="#">how to use this template</a></p>
+    <p>
+      <a href="#"  class="btn btn-small btn-fill leader-0 trailer -1" id="try">TRY IT NOW</a>
+    </p>
   </div>
 
-    <script>
 
-  var qs = getUrlVars();
+</div>
 
-  $.ajaxSetup({
-    crossDomain: true,
-    xhrFields: {
-      withCredentials: true
-    }
-  });
+</div>
 
-  function getUrlVars()
-  {
-      var vars = [], hash;
-      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-      for(var i = 0; i < hashes.length; i++)
-      {
-          hash = hashes[i].split('=');
-          vars.push(hash[0]);
-          vars[hash[0]] = hash[1];
-      }
-      return vars;
-  }
-
-  // TODO: verify that fieldname is always 'username' <- not sure if only for dev accounts
-  var url = 'http://' + window.$APP.me.username + '.maps.arcgis.com/home/content.html?start=1&view=table&sortOrder=desc&sortField=modified';
-  
-  $("#try").attr('href', url);
-
-  $("#step-1 form").submit(function(e){
-
-    e.preventDefault();
-
-    $.ajax({
-        type: "POST",    
-        dataType: 'json',
-        url: "https://arcgis.domake.io/api/products/"+qs.id+"/activate",
-        success: function(data){
-          $("#step-1").slideUp(function(){
-            $("#step-2").slideDown();
-          });
-        }
-      });
-
-    
-    return false;
-  })
-
-
-  </script>
+<script src="/assets/js/product-setup.js"></script>

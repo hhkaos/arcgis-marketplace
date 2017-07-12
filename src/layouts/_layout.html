@@ -33,6 +33,7 @@
     window.onload = function () {calcite.init();};
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/assets/js/common.js"></script>
   <script src="/assets/js/js.cookie.js"></script>
   <script src="/assets/js/index.js"></script>
 </head>
@@ -42,7 +43,7 @@
   <div class="grid-container">
     {% include "partials/_main-menu" %}
 
-    <div class="column-24">
+    <div class="column-24 main">
       {% block main %}{% endblock %}
     </div>
 
