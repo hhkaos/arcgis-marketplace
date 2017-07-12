@@ -1,0 +1,23 @@
+---
+pipeline:
+
+  deploy:
+    image: drillster/drone-rsync
+    hosts:
+      - domake.io
+    user: ${DEPLOY_USERNAME}
+    key: ${DEPLOY_KEY}
+    source: .
+    target: ${DEPLOY_PATH}
+    script:
+      - cd ${DEPLOY_PATH}
+
+  slack:
+    image: plugins/slack
+    channel: dev
+    username: drone
+    webhook: ${SLACK_WEBHOOK}
+    when:
+      status:
+        - failure
+        - success
