@@ -20,11 +20,14 @@ This samples shows how the API provided by [flavors/arcgis-marketplace](https://
 
 **For development**
 
-Run `npm run dev` to start a development server
+Run to start a development server open two terminals and run:
+
+1. `npm run start`
+2. `npm run dev`
 
 **For deployment**
 
-Run `npm run build` to start a development server
+Run `npm run build` this will create a docs folder with all the needed files
 
 # About Acetate
 
