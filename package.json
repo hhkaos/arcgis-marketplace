@@ -11,6 +11,18 @@
     "acetate-cli": "1.0.1",
     "moment": "^2.18.1"
   },
+  "devDependencies": {
+    "acetate": "^1.0.0",
+    "grunt": "~1.0.0",
+    "grunt-acetate": "~1.0.0",
+    "grunt-autoprefixer": "~3.0.3",
+    "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-imagemin": "~1.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-newer": "~1.2.0",
+    "grunt-sass": "~1.2.0",
+    "load-grunt-tasks": "~3.5.0"
+  },
   "keywords": [
     "acetate",
     "arcgis",
@@ -27,9 +39,11 @@
     "url": "git@github.com:mongkok/domake-front-test.git"
   },
   "scripts": {
-    "start": "acetate serve",
+    "start": "node -e \"require('grunt').tasks(['default']);\"",
     "dev": "node ./node_modules/acetate-cli/bin/acetate.js server dev --open --config acetate.config.js",
-    "build": "node ./node_modules/acetate-cli/bin/acetate.js build --config acetate.config.js",
+    
+    "build": "node -e \"require('grunt').tasks(['deploy']);\"",
+    "build-old": "node ./node_modules/acetate-cli/bin/acetate.js build --config acetate.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

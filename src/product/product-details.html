@@ -1,6 +1,8 @@
 ---
 title: Product Details
 description: Congratulations you have successfuly setup Acetate!!
+layout: layouts/_layout:main
+url: '/product/'
 ---
 
 <script src="/assets/js/moment.js"></script>
@@ -8,7 +10,7 @@ description: Congratulations you have successfuly setup Acetate!!
 <div class="column-24" id="details">
   <div class="column-18">
     <p>
-      <a href="../">Home</a> / <!--<a href="#">Developers</a> / <a href="#" id="author"></a> /--> <span id="template-name"></span>
+        {% link '/', 'Home', requireExactMatch=true %} / <!--<a href="#">Developers</a> / <a href="#" id="author"></a> /--> <span id="template-name"></span>
     </p>
 
     <style>

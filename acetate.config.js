@@ -8,7 +8,7 @@ module.exports = function (acetate) {
    * loads all files ending in .md or .html in
    * the source folder (src)
    */
-  acetate.load('**/*.+(md|html|js)');
+  acetate.load('**/*.+(md|html|js|css)');
 
   /**
    * Use the 'main' block in the _layout.html file
@@ -18,5 +18,5 @@ module.exports = function (acetate) {
 
   acetate.metadata('**/*', {
     author: 'Raul Jimenez - @hhkaos'
-});
+  });
 };

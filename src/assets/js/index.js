@@ -26,7 +26,7 @@ var is_authenticated = function(callback){
   request('https://arcgis.domake.io/api/me?format=json', 'GET', null, callback);
 };
 
-var logged = Cookies.get('login');
+var logged = eval(Cookies.get('login'));
 window.$APP = window.$APP || {};
 
 
@@ -37,21 +37,22 @@ if(!logged){
 
     if(data.responseJSON.username){
       Cookies.set('login', 'true');
-      
+      logged = true;
       localStorage.me = JSON.stringify(data.responseJSON);
       window.$APP.me = JSON.parse(localStorage.me);
-      $(document).ready(function(){
-        $("#login").hide();
-        $("#logout").show();
-      });
     }
   });
-}else{
+}
+
+if(logged){
   window.$APP.me = JSON.parse(localStorage.me);
   
   $(document).ready(function(){
     $("#login").hide();
     $("#logout").show();
+    $('#user-details img').attr('src','https://arcgis.domake.io'+window.$APP.me.avatar)
+    $('#user-details .name').text(window.$APP.me.username);
   });
+  
   
 }
