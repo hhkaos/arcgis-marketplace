@@ -33,6 +33,8 @@
     window.onload = function () {calcite.init();};
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!--<script src="../../assets/vendors/js/jsrender.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsviews/0.9.87/jsrender.js"></script>
   <script src="../../assets/js/common.js"></script>
   <script src="../../assets/js/js.cookie.js"></script>
   <script src="../../assets/js/index.js"></script>
@@ -56,7 +58,7 @@
       <a class="top-nav-link icon-ui-user margin-left-1" href="https://arcgis.domake.io/login/arcgis/" id="login">Sign In</a>
       
 
-      <div class="dropdown js-dropdown leader-half" id="logout" style="display:none">
+      <div class="dropdown js-dropdown leader-1" id="logout" style="display:none">
         <!-- extends side-nav -->
         <button class="btn btn-transparent dropdown-btn js-dropdown-toggle" tabindex="0" aria-haspopup="true" aria-expanded="false">
           <span id="user-details"><img src="" alt="User avatar"><span class="name"></span></span>
