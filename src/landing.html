@@ -23,8 +23,8 @@ dest: '/index.html'
       <h4 class="font-size-1 trailer-half">
         <a href="product/?id=<%: id %>"><%: name %></a>
       </h4>
-      <p class="trailer-0 font-size--1">
-        <%: description %>
+      <p class="trailer-0 font-size--1 description">
+        <%: description.split(" ").slice(0,25).join(" ") %>
       </p>
       <p class="trailer-0 footer-card">
         <span class="author">

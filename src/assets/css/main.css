@@ -15,6 +15,13 @@
   background-size: cover;
   background-position: center center; }
 
+#product-list .description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 100px; }
+  #product-list .description::after {
+    content: '...'; }
+
 #product-list .footer-card {
   font-size: .8rem;
   border-top: 1px dotted #ccc;
