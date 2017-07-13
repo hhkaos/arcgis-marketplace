@@ -9,13 +9,15 @@ dest: '/product/index.html'
 <script src="/assets/js/moment.js"></script>
 
 <div class="column-24" id="product-details">
-  <div class="column-18">
+  <div class="column-14">
     <p>
         <a href="{{ relativePath }}">Home</a> / <!--<a href="#">Developers</a> / <a href="#" id="author"></a> /--> <span id="template-name"></span>
     </p>
     
     <div id="preview-canvas">
       <img src="" id="preview">
+    </div>
+    <div id="preview-app" style="display:none">
     </div>
     <h2 class="leader-0 trailer-0 tablet-show">
       Description
@@ -27,45 +29,59 @@ dest: '/product/index.html'
 
 
   </div>
-  <div class="column-6">
+  <div class="column-10">
     <span class="leader-2 tablet-hide">&nbsp;</span>
     <p>
-      <a href="#" class="btn btn-fill btn-clear leader-half icon-ui-maps" id="preview-url" target="blank">Preview in new window</a>
-      <!--<button class="btn btn-fill btn-green leader-half icon-ui-favorites">Like</button>-->
-      <a href="#" class="btn btn-fill leader-half icon-ui-plus" id="buy">Buy now (<span id="price"></span>)</a>
+      <btn class="btn btn-third btn-clear leader-1 icon-ui-maps" id="previewBtn">Preview</btn>
+      <a href="#" class="btn btn-third leader-half icon-ui-plus" id="buy"><span id="price"></span></a>
+      <button class="btn btn-third btn-green leader-half icon-ui-save">Save for later</button>
     </p>
-    <p>
-      <strong>Last update</strong>: <span id="last-update"></span><br>
+    <p class="trailer-half">
+      <strong>Last update</strong>: <span id="last-update"></span>
+      
+      <span class="right">
+        <strong>Active installs</strong>: <span id="active-installs">12.302</span>
+      </span>
     </p>
-        <!--<p>
-          <strong>Active installs</strong>: <span id="active-installs">12.302</span>
-        </p>-->
 
-  </div>
-</div>
-<div class="column-24">
-  <div id="disqus_thread"></div>
-  <script>
+    <div id="disqus_thread"></div>
+      <script>
 
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-      var d = document, s = d.createElement('script');
-      s.src = 'https://arcgis-confapps.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://arcgis-confapps.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 </div>
 
 
 
 <script src="{{ relativePath }}/assets/js/product-details.js"></script>
+
+
+<script id="videoTmpl" type="text/x-jsrender">
+  <div class="videoWrapper">
+    <iframe src="<%: youtube_url %>" width="640" height="360" frameborder="0" allowfullscreen>
+    </iframe>
+  </div>
+</script>
+
+<script id="previewTmpl" type="text/x-jsrender">
+  <div class="videoWrapper">
+    <iframe src="<%: fullUrl %>" width="640" height="360" frameborder="0">
+    </iframe>
+  </div>
+</script>

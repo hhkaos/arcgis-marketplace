@@ -35,3 +35,11 @@ function getUrlVars()
 var qs = getUrlVars();
 
 $.views.settings.delimiters("<%", "%>");
+
+$(document).ready(function(){
+  $('#logoutOption').click(function(e){
+    e.preventDefault();
+    Cookies.remove('login');
+    location.href = $(this).attr('href');
+  });
+});

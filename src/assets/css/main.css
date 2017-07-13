@@ -42,8 +42,23 @@
   margin: 0 auto;
   height: auto; }
 
+#product-details .btn-third {
+  width: 32.5%;
+  text-align: center; }
+
 #product-details #preview-canvas {
-  max-height: 400px;
   width: 100%;
-  overflow: hidden;
-  background-color: black; }
+  overflow: hidden; }
+
+#product-details .videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+  height: 0; }
+  #product-details .videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }

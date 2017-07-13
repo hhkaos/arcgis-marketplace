@@ -1,11 +1,15 @@
 'use strict';
 
 var render_to_response = function(url, data){
-      
+
   $('#author').text(data.owner.username);
   
+  var lastUpdate = moment(data.created).format('MMMM Do YYYY');
+
+  $('#last-update').text(lastUpdate);
+
   if(data.price>0){
-    $('#price').text('$' + (data.price / 100));
+    $('#price').text('Buy ($' + (data.price / 100) + ')');
     $('#buy').attr('href', 'buy/?id=' + data.id)
   }else{
     $('#buy').text('Install for free');
@@ -14,19 +18,32 @@ var render_to_response = function(url, data){
   $('#template-name').text(data.name);
   
   if(data.youtube_url){
-    $('#preview-canvas').html('<div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="' +
-      data.youtube_url + '" width="640" height="360" frameborder="0" ' +
-      'style="position:absolute;margin-left:-320px;left:50%" allowfullscreen></iframe></div>');
+    
+    var template = $.templates("#videoTmpl");
+    var htmlOutput = template.render(data);
+    $('#preview-canvas').html(htmlOutput);
+
   }else{
     $('#preview').attr('src', data.image);
   }
   
   $('#description').text(data.description);
-  $('#preview-url').attr('href', data.preview + '?' + $.param(data.url_query));
+  
+  var template = $.templates("#previewTmpl");
+  var url = { fullUrl: data.preview }; 
+  
+  if(data.url_query){
+    url.fullUrl += '?' + $.param(data.url_query);
+  }
 
-  var lastUpdate = moment(data.created).format('MMMM Do YYYY');
+  var htmlOutput = template.render(url);
+  $('#preview-app').html(htmlOutput);
 
-  $('#last-update').text(lastUpdate);
+  $('#previewBtn').click(function(){
+    $('#preview-canvas').slideToggle();
+    $('#preview-app').slideToggle();
+  });
+  
 }
 
 //TODO: If user is not logged can not install/buy
