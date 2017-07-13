@@ -6,6 +6,36 @@ url: '/'
 dest: '/index.html'
 ---
 
-<div class="block-group block-group-4-up tablet-block-group-2-up phone-block-group-1-up" id="products"></div>
+<div class="block-group block-group-4-up tablet-block-group-2-up phone-block-group-1-up" id="product-list"></div>
 
 <script src="{{ relativePath }}/assets/js/landing.js"></script>
+  
+
+
+<script id="appCard" type="text/x-jsrender">
+  <div class="card block trailer-1">
+    <a 
+      href="product/?id=<%: id %>" 
+      class="thumbnail"
+      style="background-image: url(<%: image %>)"
+    ></a>
+    <div class="card-content">
+      <h4 class="font-size-1 trailer-half">
+        <a href="product/?id=<%: id %>"><%: name %></a>
+      </h4>
+      <p class="trailer-0 font-size--1">
+        <%: description %>
+      </p>
+      <p class="trailer-0 footer-card">
+        <span class="author">
+          <strong>By:</strong> <%: owner.username %>
+
+        </span> 
+        <span class="right price <%: price %>">
+          <strong>Price:<strong> <%: price %>
+        </span>
+      </p>
+    </div>
+  </div>
+</script>
+   

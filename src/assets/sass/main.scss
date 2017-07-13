@@ -10,6 +10,38 @@
   }
 }
 
+#product-list{
+  .thumbnail{
+    height: 220px;
+    background-size: cover;
+    background-position: center center;
+  }
+  .footer-card{
+    font-size: .8rem;
+    border-top: 1px dotted #ccc;
+    margin-top: .5rem;
+    padding-top: .5rem;
+
+    span{
+      padding: .3rem;
+      display: inline-block;
+      background-color: #efefef;
+
+      &.price{
+        background-color: #fbaf24;
+        
+        color: #fff;
+
+        &.Free{
+          background-color: #23b974;
+        }
+      }
+    }
+  }
+  
+
+}
+
 #product-buy{
   #paypal input[type="image"]{
     width: 230px;

@@ -33,3 +33,5 @@ function getUrlVars()
 }
 
 var qs = getUrlVars();
+
+$.views.settings.delimiters("<%", "%>");
