@@ -5,12 +5,13 @@ pipeline:
     image: drillster/drone-rsync
     hosts:
       - domake.io
-    user: ${DEPLOY_USERNAME}
-    key: ${DEPLOY_KEY}
     source: .
-    target: ${DEPLOY_PATH}
+    exclude:
+      - 'node_modules'
     script:
-      - cd ${DEPLOY_PATH}
+      - cd /opt/apps/marketplace
+      - npm run build
+    secrets: [ plugin_target, rsync_user, plugin_key ]
 
   slack:
     image: plugins/slack
@@ -21,3 +22,4 @@ pipeline:
       status:
         - failure
         - success
+    secrets: [ slack_webhook ]
