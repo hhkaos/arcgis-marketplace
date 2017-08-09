@@ -12,6 +12,8 @@ pipeline:
       - cd /opt/apps/marketplace
       - npm run build
     secrets: [ plugin_target, rsync_user, plugin_key ]
+    when:
+      branch: release
 
   slack:
     image: plugins/slack
