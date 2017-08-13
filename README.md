@@ -1,4 +1,7 @@
 # domake-front-test
+
+[![Build Status](https://drone.domake.io/api/badges/fruitis/arcgis-marketplace/status.svg)](https://drone.domake.io/fruitis/arcgis-marketplace)
+
 This is the frontend of a project composed of two more repos: [flavors/arcgis-marketplace](https://github.com/flavors/arcgis-marketplace) & [mongkok/arcgis-sdk](https://github.com/mongkok/arcgis-sdk).
 
 ## API doc & samples

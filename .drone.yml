@@ -1,0 +1,27 @@
+---
+pipeline:
+
+  deploy:
+    image: drillster/drone-rsync
+    hosts:
+      - domake.io
+    source: .
+    exclude:
+      - 'node_modules'
+    script:
+      - cd /opt/apps/marketplace
+      - npm run build
+    secrets: [ plugin_target, rsync_user, plugin_key ]
+    when:
+      branch: release
+
+  slack:
+    image: plugins/slack
+    channel: dev
+    username: drone
+    webhook: ${SLACK_WEBHOOK}
+    when:
+      status:
+        - failure
+        - success
+    secrets: [ slack_webhook ]
