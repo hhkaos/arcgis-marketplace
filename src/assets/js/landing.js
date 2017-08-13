@@ -16,7 +16,7 @@ var render_to_response = function(url, data){
 
     var htmlOutput = template.render(elem);
 
-    $('#product-list').prepend(htmlOutput);
+    $('#product-list').append(htmlOutput);
 
   });
 }
