@@ -36,13 +36,14 @@ var render_to_response = function(url, data){
     url.fullUrl += '?' + $.param(data.url_query);
   }
 
-  var htmlOutput = template.render(url);
+  $('#previewBtn').attr('href', url.fullUrl);
+  /*var htmlOutput = template.render(url);
   $('#preview-app').html(htmlOutput);
 
   $('#previewBtn').click(function(){
     $('#preview-canvas').slideToggle();
     $('#preview-app').slideToggle();
-  });
+  });*/
   
 }
 
