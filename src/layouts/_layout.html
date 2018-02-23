@@ -41,9 +41,10 @@
 </head>
 
 <body>
+  
+  {% include "partials/_main-menu" %}
+  
   <div class="grid-container">
-    {% include "partials/_main-menu" %}
-
     <div class="column-24 main">
       {% block main %}{% endblock %}
     </div>
