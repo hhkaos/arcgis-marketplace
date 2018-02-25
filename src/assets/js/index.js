@@ -20,6 +20,7 @@ var is_authenticated = function(callback){
 
 var logged = eval(Cookies.get('login'));
 window.$APP = window.$APP || {};
+console
 
 if(!logged){
   // TODO: avoid check login at every load
@@ -31,27 +32,27 @@ if(!logged){
       logged = true;
       localStorage.me = JSON.stringify(data.responseJSON);
       window.$APP.me = JSON.parse(localStorage.me);
+      show_login_btn();
     }
   });
+}else{
+    show_login_btn();
 }
 
-if(logged){
-  window.$APP.me = JSON.parse(localStorage.me);
+function show_login_btn(){
+    window.$APP.me = JSON.parse(localStorage.me);
 
-  $(document).ready(function(){
-    $('#login').hide();
-    $('#logout').show();
-    if(window.$APP.me.avatar){
-        $('#user-details img').attr('src', `https://arcgis.domake.io${window.$APP.me.avatar}`);
-    }else{
-        $('#user-details img').attr('src', get_gravatar(window.$APP.me.email));
-    }
-    $('#user-details .name').text(window.$APP.me.username);
-  });
-
-
+    $(document).ready(function(){
+      $('#login').hide();
+      $('#logout').show();
+      if(window.$APP.me.avatar){
+          $('#user-details img').attr('src', `https://arcgis.domake.io${window.$APP.me.avatar}`);
+      }else{
+          $('#user-details img').attr('src', get_gravatar(window.$APP.me.email));
+      }
+      $('#user-details .name').text(window.$APP.me.username);
+    });
 }
-
 
 function get_gravatar(email, size) {
 
