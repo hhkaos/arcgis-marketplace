@@ -3,7 +3,7 @@
 var render_to_response = function(url, data){
 
   $('#author').text(data.owner.username);
-  
+
   var lastUpdate = moment(data.created).format('MMMM Do YYYY');
 
   $('#last-update').text(lastUpdate);
@@ -16,9 +16,9 @@ var render_to_response = function(url, data){
     $('#buy').attr('href', 'setup/?id=' + data.id)
   }
   $('#template-name').text(data.name);
-  
+
   if(data.youtube_url){
-    
+
     var template = $.templates("#videoTmpl");
     var htmlOutput = template.render(data);
     $('#preview-canvas').html(htmlOutput);
@@ -26,12 +26,12 @@ var render_to_response = function(url, data){
   }else{
     $('#preview').attr('src', data.image);
   }
-  
-  $('#description').text(data.description);
-  
+
+  $('#description').html(data.description);
+
   var template = $.templates("#previewTmpl");
-  var url = { fullUrl: data.preview }; 
-  
+  var url = { fullUrl: data.preview };
+
   if(data.url_query){
     url.fullUrl += '?' + $.param(data.url_query);
   }
@@ -44,7 +44,7 @@ var render_to_response = function(url, data){
     $('#preview-canvas').slideToggle();
     $('#preview-app').slideToggle();
   });*/
-  
+
 }
 
 //TODO: If user is not logged can not install/buy
