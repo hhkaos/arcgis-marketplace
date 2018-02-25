@@ -5,8 +5,8 @@ var render_to_response = function(url, data){
   var template = $.templates("#appCard");
 
   data.results.forEach(function(elem, i){
-    elem.description = elem.description? elem.description: 'Without description';
-    
+    elem.description = elem.description? $($.parseHTML(elem.description)[0]).text(): 'Without description';
+
     elem.price = (elem.price > 0)? '$'+ (elem.price / 100): 'Free';
 
     //Bugfix for the demo
