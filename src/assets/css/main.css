@@ -13,14 +13,6 @@
 .main h2 {
   font-size: 1.2rem; }
 
-.no-vertical-padding{
-    padding-top: 0;
-    padding-bottom: 0;
-}
-.dropdown.top-nav-link:hover{
-    border-bottom-color: white;
-}
-
 #product-list .thumbnail {
   height: 180px;
   background-size: cover;
@@ -54,8 +46,7 @@
   height: auto; }
 
 #product-details .btn-third {
-  /* width: 32.5%; */
-  width: 49.6%;
+  width: 32.5%;
   text-align: center; }
 
 #product-details #preview-canvas {
