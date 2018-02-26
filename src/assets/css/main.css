@@ -74,7 +74,7 @@
     width: 100%;
     height: 100%; }
 
-button.transparent {
+#hire-an-expert button.transparent {
   border: 0;
   font-size: 2rem;
   position: absolute;
@@ -82,15 +82,29 @@ button.transparent {
   background: none;
   color: white; }
 
-button.prev {
+#hire-an-expert button.prev {
   left: 15px; }
 
-button.next {
+#hire-an-expert button.next {
   right: -5px; }
 
-.dev-description {
+#hire-an-expert .dev-description,
+#hire-an-expert .dev-carousel,
+#hire-an-expert .dev-contact {
+  display: inline-block;
+  float: left; }
+
+#hire-an-expert .dev-description {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 16px 0 rgba(0, 0, 0, 0.05);
   padding: 1rem;
-  height: 284px; }
-  .dev-description ul {
+  height: 233px;
+  width: 25%;
+  margin-left: 6.2%; }
+  #hire-an-expert .dev-description ul {
     margin-bottom: 0; }
+
+#hire-an-expert .dev-carousel {
+  width: 40%; }
+
+#hire-an-expert .dev-contact {
+  width: 19.1%; }

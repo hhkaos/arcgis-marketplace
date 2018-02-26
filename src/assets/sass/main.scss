@@ -94,29 +94,45 @@
   }
 
 }
-
-button{
-    &.transparent{
-        border: 0;
-        font-size: 2rem;
-        position: absolute;
-        top: 43%;
-        background: none;
-        color: white;
-    }
-    &.prev{
-        left: 15px;
-    }
-    &.next{
-        right: -5px;
-    }
-}
-
-.dev-description{
-        box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 0 16px 0 rgba(0,0,0,0.05);
-        padding: 1rem;
-        height: 284px;
-        ul{
-            margin-bottom: 0;
+#hire-an-expert{
+    button{
+        &.transparent{
+            border: 0;
+            font-size: 2rem;
+            position: absolute;
+            top: 43%;
+            background: none;
+            color: white;
         }
+        &.prev{
+            left: 15px;
+        }
+        &.next{
+            right: -5px;
+        }
+    }
+
+    .dev-description,
+    .dev-carousel,
+    .dev-contact{
+        display: inline-block;
+        float: left;
+    }
+
+    .dev-description{
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 0 16px 0 rgba(0,0,0,0.05);
+            padding: 1rem;
+            height: 233px;
+            ul{
+                margin-bottom: 0;
+            }
+            width: 25%;
+            margin-left: 6.2%;
+    }
+    .dev-carousel{
+        width: 40%;
+    }
+    .dev-contact{
+        width: 19.1%;
+    }
 }
