@@ -39,8 +39,18 @@ if(!logged){
     show_login_btn();
 }
 
+$('#logout').click(function(){
+    Cookies.set('login', 'false');
+    console.log("Login out")
+})
+
+
 function show_login_btn(){
-    window.$APP.me = JSON.parse(localStorage.me);
+    try{
+        window.$APP.me = JSON.parse(localStorage.me);
+    }catch(e){
+        console.error("Error: ", e);
+    }
 
     $(document).ready(function(){
       $('#login').hide();

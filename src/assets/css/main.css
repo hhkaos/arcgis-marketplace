@@ -6,6 +6,14 @@
 .sub-nav {
   background-color: #052942; }
 
+.relative {
+  position: relative;
+  padding-left: 15px; }
+
+.no-vertical-padding {
+  padding-top: 0;
+  padding-bottom: 0; }
+
 .main h1 {
   font-size: 1.5rem;
   margin: 0; }
@@ -46,7 +54,7 @@
   height: auto; }
 
 #product-details .btn-third {
-  width: 32.5%;
+  width: 49.7%;
   text-align: center; }
 
 #product-details #preview-canvas {
@@ -65,3 +73,24 @@
     left: 0;
     width: 100%;
     height: 100%; }
+
+button.transparent {
+  border: 0;
+  font-size: 2rem;
+  position: absolute;
+  top: 43%;
+  background: none;
+  color: white; }
+
+button.prev {
+  left: 15px; }
+
+button.next {
+  right: -5px; }
+
+.dev-description {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 16px 0 rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  height: 284px; }
+  .dev-description ul {
+    margin-bottom: 0; }

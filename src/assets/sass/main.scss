@@ -1,5 +1,15 @@
 @import 'header';
 
+.relative{
+    position: relative;
+    padding-left: 15px;
+
+}
+
+.no-vertical-padding{
+    padding-top: 0;
+    padding-bottom: 0;
+}
 .main{
   h1{
     font-size: 1.5rem;
@@ -37,7 +47,7 @@
 
       &.price{
         background-color: #fbaf24;
-        
+
         color: #fff;
 
         &.Free{
@@ -46,7 +56,7 @@
       }
     }
   }
-  
+
 
 }
 
@@ -61,7 +71,8 @@
 
 #product-details{
   .btn-third{
-    width: 32.5%;
+    // width: 32.5%;
+    width: 49.7%;
     text-align: center;
   }
   #preview-canvas{
@@ -82,4 +93,30 @@
     }
   }
 
+}
+
+button{
+    &.transparent{
+        border: 0;
+        font-size: 2rem;
+        position: absolute;
+        top: 43%;
+        background: none;
+        color: white;
+    }
+    &.prev{
+        left: 15px;
+    }
+    &.next{
+        right: -5px;
+    }
+}
+
+.dev-description{
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 0 16px 0 rgba(0,0,0,0.05);
+        padding: 1rem;
+        height: 284px;
+        ul{
+            margin-bottom: 0;
+        }
 }
