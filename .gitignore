@@ -2,6 +2,8 @@
 build
 docs
 
+src/assets/css/
+
 # Logs
 logs
 *.log
