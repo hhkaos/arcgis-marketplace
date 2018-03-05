@@ -1,6 +1,6 @@
 ---
-title: ArcGIS Configurable Apps
-description: Repository of custom configurable apps and templates
+title: GeoTemplate Solutions - ArcGIS Templates & Experts
+description: Custom configurable apps and templates repository
 layout: layouts/_layout:main
 url: '/'
 dest: '/index.html'
@@ -9,11 +9,11 @@ dest: '/index.html'
 <div class="block-group block-group-4-up tablet-block-group-2-up phone-block-group-1-up" id="product-list"></div>
 
 <script src="{{ relativePath }}/assets/js/landing.js"></script>
-  
+
 <script id="appCard" type="text/x-jsrender">
   <div class="card block trailer-1">
-    <a 
-      href="product/?id=<%: id %>" 
+    <a
+      href="product/?id=<%: id %>"
       class="thumbnail"
       style="background-image: url(<%: image %>)"
     ></a>
@@ -26,9 +26,9 @@ dest: '/index.html'
       </p>
       <p class="trailer-0 footer-card">
         <span class="author">
-          <strong>By:</strong> 
+          <strong>By:</strong>
           <a href="#"><%: owner.username %></a>
-        </span> 
+        </span>
 
         <span class="right price <%: price %>">
           <strong>Price:<strong> <%: price %>
@@ -37,4 +37,3 @@ dest: '/index.html'
     </div>
   </div>
 </script>
-   
