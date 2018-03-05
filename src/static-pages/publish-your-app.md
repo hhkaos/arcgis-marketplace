@@ -7,4 +7,4 @@ dest: '/publish-your-app/index.html'
 
 ## Publish your app
 
-*Pending*
+If you want to publish a template please write to **support@geotemplatesolutions.com**.
